@@ -40,7 +40,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $Subject)
     {
-        return $Subject->load('teacher')->load('gaurdian')->load('marks');
+        return ;
     }
 
     /**
@@ -52,9 +52,7 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Subject = Subject::find($id);
-        $Subject->update($request->all());
-        return $Subject;
+        return;
     }
 
     /**

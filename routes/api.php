@@ -51,6 +51,8 @@ Route::post('/register',[AuthController::class,'register']);
     Route::get('/get_student_mark_info/{student}/{termId}',[MarksController::class,'show']);
     Route::post('/set_student_mark_info',[MarksController::class,'store']);
     Route::post('/update_student_mark_info/{id}',[MarksController::class,'update']);
+    Route::post('/set_subject',[SubjectController::class,'store']);
+    
     // Add marks to student.
     Route::post('/assign_student_marks',[DynamicMarksController::class,'store']);
     // DONE
