@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -13,12 +13,14 @@ class AuthController extends Controller
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
+            'term' => 'required|string',
             'password' => 'required|string|confirmed'
         ]);
 
-        $user = User::create([
+        $user = UserType::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
+            'term' => $fields['term'],
             'password' => bcrypt($fields['password'])
         ]);
 
@@ -38,7 +40,7 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
         // Check email
-        $user = User::where('email', $fields['email'])->first();
+        $user = UserType::where('email', $fields['email'])->first();
 
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
@@ -65,7 +67,7 @@ class AuthController extends Controller
 
         $tokenId = $fields["tokenId"];
 
-        $user = User::where('email', $fields['email'])->first();
+        $user = UserType::where('email', $fields['email'])->first();
 
         $user->tokens()->where('id', $tokenId)->delete();
 
