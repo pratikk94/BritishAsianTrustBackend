@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::all();
+        return Student::all()->load('gaurdian')->load('teacher');
     }
 
     /**
